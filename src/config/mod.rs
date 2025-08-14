@@ -2,8 +2,9 @@ use serde::Deserialize;
 use std::io;
 use std::fs;
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct AppSettings {
+    #[serde(rename = "Environment")]
     pub environment: String,
     #[serde(rename = "ServiceDesk")]
     pub service_desk: ServiceDeskConfig,
@@ -11,7 +12,7 @@ pub struct AppSettings {
     pub top_desk: TopDeskConfig,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct ServiceDeskConfig {
     #[serde(rename = "SandboxUrl")]
     pub sandbox_url: String,
@@ -21,11 +22,11 @@ pub struct ServiceDeskConfig {
     pub username: String,
     #[serde(rename = "Password")]
     pub password: String,
-    #[serde(rename = "UserID")]
+    #[serde(rename = "userID")]
     pub user_id: String,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct TopDeskConfig {
     #[serde(rename = "BaseUrl")]
     pub base_url: String,
